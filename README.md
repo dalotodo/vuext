@@ -11,9 +11,38 @@ VUEXT is only compatible with version 4.x of VueX, and version 3.x of Vue.
 If using `npm`:
 
 ```
-npm install --save vuext
+npm install --save @vuextnd/core
 ```
 
-### Usage
+### Usage (basic)
 
-From
+You can create a module by adding
+
+```
+
+/* This is your items type */
+export interface Item {
+    id: string;
+}
+
+export function createMyCustomModule<A>()  {
+
+    const module : Module<> = {
+        namespaced: true,
+        
+        /* ... Add your custom state, mutations and actions here ... */
+    }
+
+
+    const featured = addFeatures(module,        
+            withItems<Item>(),  // Allows you have a collection of items
+            withSelectedItem<Item>(), // Allows you to have a single selected item
+            withSearch(),   // Allows you have search
+            withLoading(),  // Adds loading state management (during AJAX request)
+            withPaging(),   // Allows you to have paging control over the collection
+    )
+
+    return featured;
+}
+
+```
