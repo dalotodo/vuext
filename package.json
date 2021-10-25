@@ -1,20 +1,50 @@
 {
   "name": "vuext",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Provides feature extensions to VueX 4.x library",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": ""
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "build": "rimraf dist && rollup -c rollup.config.js",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test ",
+    "version": "git add -A src",
+    "postversion": "git push && git push --tags"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "typescript": "^4.4.4"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dalotodo/vuext.git"
   },
+  "homepage": "https://github.com/dalotodo/vuext#readme",
+  "keywords": [
+    "vuex",
+    "vue"
+  ],
+  "author": "Pablo Pérez <@dalotodo>",
+  "license": "MIT",
   "dependencies": {
     "vue": "^3.2.20",
     "vuex": "^4.0.2"
-  }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-node-resolve": "^13.0.6",
+    "@rollup/plugin-typescript": "^8.3.0",
+    "@types/jest": "^27.0.2",
+    "deepmerge": "^4.2.2",
+    "jest": "^27.3.1",
+    "nyc": "^15.1.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.58.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "ts-jest": "^27.0.7",
+    "ts-node": "^10.4.0",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.4"
+  },
+  "files": [
+    "dist/**/**"
+  ]
 }
