@@ -13,6 +13,6 @@ export default [
       file: 'dist/index.js',
       format: 'cjs',
     },
-    plugins: [nodeResolve(), typescript(), babel({ babelHelpers: 'bundled' }), terser()]
+    plugins: [nodeResolve(), typescript({ tsconfig: "tsconfig.build.json" }), babel({ babelHelpers: 'bundled' }), terser()]
   }),
 ];

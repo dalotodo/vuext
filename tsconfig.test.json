@@ -7,21 +7,25 @@
     "lib": ["es2017"],                            
     "strict": true,  
     "esModuleInterop": false,                 
+
     "outDir": "dist/",
-
-
-    "rootDir": "src",
-    "baseUrl": "./src",
+    
+    
+    "rootDir": "./",
+    "baseUrl": "./",    
     "paths": {
-      "@/*": ["./*"],
-    },
-
+      "@/*": ["./src/*"],
+    },    
+    
     "declaration": true,
     "declarationDir": "dist/types",
+    
   },
   "include": [ "src/**/*.ts" ],
   "exclude": [
     "node_modules",
     "dist"
-  ]
+  ],  
+
 }
+
