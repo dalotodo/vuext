@@ -6,14 +6,16 @@
   "types": "dist/types/index.d.ts",
   "files": [
     "src",
-    "dist/*.js",
-    "types/*.d.ts"
+    "dist/**/*.js",
+    "types/**/*.d.ts"
   ],
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
-    "build": "npm run clean & npm run build:types & npm run build:js",
-    "clean": "rimraf dist",
+    "clean": "npm run clean:types & npm run clean:js",
+    "clean:js": "rimraf dist",
+    "clean:types": "rimraf types",
+    "build": "npm run clean & npm run build:types & npm run build:js",    
     "build:js": "rollup -c rollup.config.js",
     "build:types": "tsc --project tsconfig.build.json --emitDeclarationOnly --skipLibCheck",
     "prepare": "npm run build",

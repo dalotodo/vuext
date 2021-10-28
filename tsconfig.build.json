@@ -15,7 +15,7 @@
     "baseUrl": "./",    
     
     "declaration": true,
-    "declarationDir": "dist/types",
+    "declarationDir": "types",
     
   },
   "include": [ "src/**/*.ts" ],

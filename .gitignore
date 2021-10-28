@@ -43,5 +43,8 @@ node_modules/
 # Dist files
 dist/
 
+# Type files
+types/
+
 # Editor directories and files
 .vscode
