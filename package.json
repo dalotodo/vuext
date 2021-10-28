@@ -1,6 +1,6 @@
 {
   "name": "@vuextnd/core",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Provides feature extensions to VueX 4.x library",
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
