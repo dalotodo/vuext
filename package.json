@@ -3,7 +3,7 @@
   "version": "0.1.4",
   "description": "Provides feature extensions to VueX 4.x library",
   "main": "dist/index.js",
-  "types": "dist/types/index.d.ts",
+  "types": "types/index.d.ts",
   "files": [
     "src",
     "dist/**/*.js",
