@@ -5,11 +5,14 @@ import { babel } from '@rollup/plugin-babel'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { terser } from "rollup-plugin-terser"
 
-export default merge({}, {
-  input: './src/index.ts',
-  output: {            
+
+export default [
+  merge({}, {
+    input: './src/index.ts',
+    output: {
       file: 'dist/index.js',
-      format: 'cjs',      
-  },
-  plugins: [ nodeResolve(), typescript(), babel({ babelHelpers: 'bundled' }), terser() ]
-});
+      format: 'cjs',
+    },
+    plugins: [nodeResolve(), typescript(), babel({ babelHelpers: 'bundled' }), terser()]
+  }),
+];
