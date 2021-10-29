@@ -8,11 +8,12 @@ import { terser } from "rollup-plugin-terser"
 
 export default [
   merge({}, {
+    external: ['vue', 'vuex'],
     input: './src/index.ts',
     output: {
       file: 'dist/index.js',
       format: 'cjs',
     },
-    plugins: [nodeResolve(), typescript({ tsconfig: "tsconfig.build.json" }), babel({ babelHelpers: 'bundled' }), terser()]
+    plugins: [nodeResolve(), typescript({ tsconfig: "tsconfig.build.json" }), babel({ babelHelpers: 'bundled' }), terser() ]
   }),
 ];
