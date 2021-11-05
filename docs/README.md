@@ -42,7 +42,7 @@ npm install --save @vuextnd/core
 
 ## Usage (basic)
 
-VueXT is designed to be used with Composition API
+VueXT is designed to be used with Composition API.
 
 ### Declarative Module Creation
 

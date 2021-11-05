@@ -1,10 +1,8 @@
-
-
-#### withItem<T>
+## `withItem<T>`
 
 Allows the module to manage a single item of a given type.
 
-**State**
+### State
 
 ```
 interface WithItemModuleState<T> {
@@ -12,13 +10,13 @@ interface WithItemModuleState<T> {
 }
 ```
 
-**Getters**
+### Getters
 
 | Name  | Description |
 | ---   | --- |
 | item | Returns the item (if set) |
 
-**Mutations**
+### Mutations
 
 | Name  | Payload Type | Description |
 | ---   | --- | --- |

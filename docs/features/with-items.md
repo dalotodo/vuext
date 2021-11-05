@@ -1,4 +1,4 @@
-#### withItems<T>
+## `withItems<T>`
 
 Allows the module to manage a collection of items of a given type.
 
@@ -6,7 +6,7 @@ This feature is intended for states that handle collections as a whole (i.e. ret
 
 It's not designed (has no getters or mutations) to handle items individually.
 
-**State**
+### State
 
 ```
 interface WithItemsModuleState<T> {
@@ -14,13 +14,13 @@ interface WithItemsModuleState<T> {
 }
 ```
 
-**Getters**
+### Getters
 
 | Name  | Description |
 | ---   | --- |
 | items | Returns the full items collection |
 
-**Mutations**
+### Mutations
 
 | Name  | Payload Type | Description |
 | ---   | --- | --- |
