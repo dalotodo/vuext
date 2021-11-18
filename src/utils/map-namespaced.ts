@@ -4,7 +4,7 @@ import { ModuleRef } from "../models";
 
 type MapNamespacedArg = string | string[] | ModuleRef;
 
-interface MapNamespacedUtilityHelper {
+export interface MapNamespacedUtilityHelper<R> {
     getter<T>(name: string): T;
     computed<T>(name: string): ComputedRef<T>;
     readonly<T>(name: string): ComputedRef<T>;
@@ -12,13 +12,13 @@ interface MapNamespacedUtilityHelper {
 
     commit<P=unknown>(name: string, payload?: P): void;
 
-    action<T,P=unknown>(name:string, payload?: P): Promise<T>;
+    dispatch<T,P=unknown>(name:string, payload?: P): Promise<T>;
 }
 
-export function mapNamespaced<R>(store: Store<R>, arg: string): MapNamespacedUtilityHelper;
-export function mapNamespaced<R>(store: Store<R>, arg: string[]): MapNamespacedUtilityHelper;
-export function mapNamespaced<R>(store: Store<R>, arg: ModuleRef): MapNamespacedUtilityHelper;
-export function mapNamespaced<R>(store: Store<R>, arg: MapNamespacedArg): MapNamespacedUtilityHelper {
+export function mapNamespaced<R>(store: Store<R>, arg: string): MapNamespacedUtilityHelper<R>;
+export function mapNamespaced<R>(store: Store<R>, arg: string[]): MapNamespacedUtilityHelper<R>;
+export function mapNamespaced<R>(store: Store<R>, arg: ModuleRef): MapNamespacedUtilityHelper<R>;
+export function mapNamespaced<R>(store: Store<R>, arg: MapNamespacedArg): MapNamespacedUtilityHelper<R> {
     let namespace: string = (() => {
         const filters = [
             { match: (x: MapNamespacedArg) => Array.isArray(x), result: (x: MapNamespacedArg) => (x as string[]).join('/') },
@@ -33,7 +33,7 @@ export function mapNamespaced<R>(store: Store<R>, arg: MapNamespacedArg): MapNam
         return f.result(arg);
     })();
 
-    const helper: MapNamespacedUtilityHelper = {
+    const helper: MapNamespacedUtilityHelper<R> = {
         getter<T = any>(name: string) { return <T>store.getters[`${namespace}/${name}`]; },
         computed<T = any>(name: string) { return computed(() => <T>store.getters[`${namespace}/${name}`]); },
         readonly<T = any>(name: string) { return computed(() => <T>store.getters[`${namespace}/${name}`]); },
@@ -46,7 +46,7 @@ export function mapNamespaced<R>(store: Store<R>, arg: MapNamespacedArg): MapNam
 
         commit<P=any>(name: string, payload?: P) { store.commit(`${namespace}/${name}`, payload) },
 
-        async action<T=any,P=any>(name: string, payload?: P) { return <T>(await store.dispatch(`${namespace}/${name}`, payload )); },
+        async dispatch<T=any,P=any>(name: string, payload?: P) { return <T>(await store.dispatch(`${namespace}/${name}`, payload )); },
 
     }
     return helper;
