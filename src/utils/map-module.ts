@@ -6,10 +6,10 @@ import { mapNamespaced, MapNamespacedUtilityHelper } from './map-namespaced'
 type RequireModuleArg = string | string[] | ModuleRef;
 
 
-export function useModule<S, R>(store: Store<R>, arg: string, factory?: ModuleFactory<S, R>): MapNamespacedUtilityHelper<R>;
-export function useModule<S, R>(store: Store<R>, arg: string[], factory?: ModuleFactory<S, R>): MapNamespacedUtilityHelper<R>;
-export function useModule<S, R>(store: Store<R>, arg: ModuleRef, factory?: ModuleFactory<S, R>): MapNamespacedUtilityHelper<R>;
-export function useModule<S, R>(store: Store<R>, arg: RequireModuleArg, factory?: ModuleFactory<S, R>): MapNamespacedUtilityHelper<R> {        
+export function mapModule<S, R>(store: Store<R>, arg: string, factory?: ModuleFactory<S, R>): MapNamespacedUtilityHelper<R>;
+export function mapModule<S, R>(store: Store<R>, arg: string[], factory?: ModuleFactory<S, R>): MapNamespacedUtilityHelper<R>;
+export function mapModule<S, R>(store: Store<R>, arg: ModuleRef, factory?: ModuleFactory<S, R>): MapNamespacedUtilityHelper<R>;
+export function mapModule<S, R>(store: Store<R>, arg: RequireModuleArg, factory?: ModuleFactory<S, R>): MapNamespacedUtilityHelper<R> {        
     const filters = [
         { match: (x: RequireModuleArg) => Array.isArray(x), result: (x: RequireModuleArg) => (x as string[]) },
         { match: (x: RequireModuleArg) => typeof (x) === 'object' && x !== null, result: (x: RequireModuleArg) => (x as ModuleRef).path },
@@ -22,6 +22,5 @@ export function useModule<S, R>(store: Store<R>, arg: RequireModuleArg, factory?
     const modulePath = f.result(arg);
     const moduleRef = requireModule<S,R>(store, modulePath, factory);
     
-    const namespaced = mapNamespaced<R>(store, moduleRef);    
-    return namespaced;
+    return mapNamespaced<R>(store, moduleRef);
 }
